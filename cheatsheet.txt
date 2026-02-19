@@ -1,0 +1,48 @@
+# --- SETUP (One-time) ---
+git config --global user.name "adarsh27330"
+git config --global user.email ""
+git config --global init.defaultBranch main
+git config --global core.autocrlf true
+
+# --- STARTING A PROJECT ---
+git init                         # Turn folder into a repo
+git status                       # See what's happening (Use this often!)
+git add .                        # Stage all changes
+git commit -m "Initial Commit"   # Save changes locally
+git remote add origin <URL>      # Link to GitHub
+git branch -M main               # Rename branch to main
+git push -u origin main          # Push and link to GitHub
+
+# --- WORKING ON A FEATURE ---
+git checkout -b feature-name     # Create and switch to new branch
+# (Make your changes to files)
+git add .
+git commit -m "Added feature"
+git push -u origin feature-name  # Push branch to GitHub for PR
+
+# --- SYNCING & UPDATING ---
+git fetch origin                 # Check GitHub for updates (Safe preview)
+git status                       # See if you are "behind" the team
+git pull origin main             # Download and merge latest code into current branch
+
+# --- FIXING CONFLICTS ---
+# 1. Open files with <<<<<< HEAD markers.
+# 2. Delete markers and pick/combine the code you want.
+# 3. Save the file.
+git add <filename>
+git commit -m "Fixed conflict"
+git push
+
+# --- UNDOING & REVERTING ---
+git restore <filename>           # Discard unsaved changes in a file
+git reset --soft HEAD~1          # Undo last commit (keeps your code)
+git reset --hard origin/main     # Wipe local changes to match GitHub exactly
+
+# --- VIEWING HISTORY ---
+git log --oneline --graph --all  # Visual map of all branches/commits
+
+# --- OPTIONAL: LOCAL MERGING ---
+# Use this if you want to merge without using GitHub Pull Requests
+git checkout main                # Switch to destination branch
+git merge feature-name           # Pull feature-name into main
+git branch -d feature-name       # Delete the branch locally
